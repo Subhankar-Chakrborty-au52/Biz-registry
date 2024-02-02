@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
 import "./mix.css";
 
 const Login = () => {
+  const [passShow, setPassShow] = useState(false);
+
   return (
     <>
+      {/* login page */}
+
       <section>
         <div className="form_data">
           <div className="form_heading">
@@ -25,13 +30,26 @@ const Login = () => {
               <label htmlFor="password">Password</label>
               <div className="two">
                 <input
-                  type="password"
+                  type={!passShow ? "password" : "text"}
                   name="password"
                   id="password"
                   placeholder="Enter Your Password"
                 />
+
+                {/* we add onclick function to show password */}
+
+                <div
+                  className="showpass"
+                  onClick={() => setPassShow(!passShow)}
+                >
+                  {!passShow ? "Show" : "Hide"}
+                </div>
               </div>
             </div>
+            <button className="btn">Login</button>
+            <p>
+              Don't have an Account? <NavLink to="/register">Sign Up</NavLink>
+            </p>
           </form>
         </div>
       </section>
