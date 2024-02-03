@@ -1,13 +1,24 @@
+// importing dependencies
+require("./db/conn");
 const express = require("express");
+require("dotenv").config();
+const router = require("./routes/router");
+const cors = require("cors");
 
 const app = express();
 
-const port = 8000;
+// app.get("/", (_req, res) => {
+//   res.send("Hey this is my API running 🥳");
+// });
 
-app.get("/", (req, res) => {
-  res.status(201).json("server created");
-});
+app.use(express.json());
+app.use(cors());
+app.use(router);
 
-app.listen(port, () => {
-  console.log(`sever running on port: ${port}`);
+// Port and Server starting
+const PORT = process.env.PORT;
+app.listen(PORT, () => {
+  console.log(
+    `Node server running in ${process.env.DEV_MODE} Mode on Port ${process.env.PORT}`
+  );
 });
