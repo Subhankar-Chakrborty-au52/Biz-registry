@@ -22,7 +22,7 @@ const Login = () => {
     });
   };
 
-  const loginUser = (e) => {
+  const loginUser = async(e) => {
     e.preventDefault();
 
     const { email, password } = inpval;
@@ -36,7 +36,28 @@ const Login = () => {
     } else if (password.length < 6) {
       alert("password must be 6 char");
     } else {
-      console.log("user login successfully");
+      // console.log("user login successfully");
+
+
+      
+      const data = await fetch("/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          password
+        }),
+      });
+
+      const res = await data.json();
+      console.log(res);
+
+      if(res.status === 201){
+        localStorage.setItem("usersdatatoken" , res.result.token)
+        setInpVal({...inpval , email:"" , password:""});
+      }
     }
   };
 
