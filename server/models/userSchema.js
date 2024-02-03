@@ -27,6 +27,14 @@ const userSchema = new mongoose.Schema({
     required: true,
     minlength: 6,
   },
+  tokens: [
+    {
+      token: {
+        type: String,
+        required: true,
+      },
+    },
+  ],
 });
 
 // createing model
