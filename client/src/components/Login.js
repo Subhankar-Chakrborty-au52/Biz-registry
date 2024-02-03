@@ -5,6 +5,41 @@ import "./mix.css";
 const Login = () => {
   const [passShow, setPassShow] = useState(false);
 
+  const [inpval, setInpVal] = useState({
+    email: "",
+    password: "",
+  });
+
+  const setVal = (e) => {
+    // console.log(e.target.value);
+
+    const { name, value } = e.target;
+    setInpVal(() => {
+      return {
+        ...inpval,
+        [name]: value,
+      };
+    });
+  };
+
+  const loginUser = (e) => {
+    e.preventDefault();
+
+    const { email, password } = inpval;
+
+    if (email === "") {
+      alert("Enter your email");
+    } else if (!email.includes("@")) {
+      alert("Enter valid email");
+    } else if (password === "") {
+      alert("Enter your password");
+    } else if (password.length < 6) {
+      alert("password must be 6 char");
+    } else {
+      console.log("user login successfully");
+    }
+  };
+
   return (
     <>
       {/* login page */}
@@ -21,6 +56,8 @@ const Login = () => {
               <label htmlFor="email">Email</label>
               <input
                 type="email"
+                value={inpval.email}
+                onChange={setVal}
                 name="email"
                 id="email"
                 placeholder="Enter Your Email Address"
@@ -31,6 +68,8 @@ const Login = () => {
               <div className="two">
                 <input
                   type={!passShow ? "password" : "text"}
+                  onChange={setVal}
+                  value={inpval.password}
                   name="password"
                   id="password"
                   placeholder="Enter Your Password"
@@ -46,7 +85,9 @@ const Login = () => {
                 </div>
               </div>
             </div>
-            <button className="btn">Login</button>
+            <button className="btn" onClick={loginUser}>
+              Login
+            </button>
             <p>
               Don't have an Account? <NavLink to="/register">Sign Up</NavLink>
             </p>
