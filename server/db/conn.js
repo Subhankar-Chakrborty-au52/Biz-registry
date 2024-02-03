@@ -14,5 +14,5 @@ mongoose
   })
 
   .catch((error) => {
-    console.log("Error in db connected");
+    console.log(error , "Error in db connected");
   });
