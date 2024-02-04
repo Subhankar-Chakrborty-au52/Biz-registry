@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import "./mix.css";
 
 const Login = () => {
+  const history = useNavigate();
+
   const [passShow, setPassShow] = useState(false);
 
   const [inpval, setInpVal] = useState({
@@ -54,6 +56,7 @@ const Login = () => {
 
       if (res.status === 201) {
         localStorage.setItem("usersdatatoken", res.result.token);
+        history("/dash")
         setInpVal({ ...inpval, email: "", password: "" });
       }
     }
