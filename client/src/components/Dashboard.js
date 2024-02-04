@@ -1,11 +1,12 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { LoginContext } from "./ContextProvider/Context";
+import CircularProgress from "@mui/material/CircularProgress";
+import Box from "@mui/material/Box";
 
 const Dashboard = () => {
   const { logindata, setLogindata } = useContext(LoginContext);
-
-  // console.log(logindata.ValidUserOne.email);
+  const [data, setData] = useState(false);
 
   const history = useNavigate();
 
@@ -16,7 +17,7 @@ const Dashboard = () => {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        Authorization: token,
+        "Authorization": token,
       },
     });
 
@@ -29,12 +30,17 @@ const Dashboard = () => {
       history("/dash");
     }
   };
+ 
   useEffect(() => {
-    DashboardValid();
+    setTimeout(() => {
+      DashboardValid();
+      setData(true)
+    }, 2000);
   }, []);
 
   return (
     <>
+     { data ? (
       <div
         style={{
           display: "flex",
@@ -45,6 +51,12 @@ const Dashboard = () => {
         <img src="./man.png" style={{ width: "200px", marginTop: 20 }} alt="" />
         <h1>User Email: {logindata ? logindata.ValidUserOne.email : ""}</h1>
       </div>
+     ) : (
+      <Box sx={{ display : 'flex' , justifyContent: "center" , alignItems: "center" , height : "100vh"}}>
+          Loading... &nbsp;
+          <CircularProgress />
+        </Box>
+     )}
     </>
   );
 };

@@ -34,16 +34,18 @@ const Header = () => {
     });
 
     const data = await res.json();
+    console.log(data);
 
-    if (data.status !== 201) {
-      console.log("error");
-      history("*");
-    } else {
+    if (data.status === 201) {
+      
       console.log("user logout");
       localStorage.removeItem("usersdatatoken");
-
+      
       setLogindata(false);
       history("/");
+    } else {
+      console.log("error");
+     
     }
   };
 

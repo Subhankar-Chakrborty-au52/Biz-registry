@@ -103,7 +103,7 @@ router.get("/logout", authenticate, async (req, res) => {
     res.clearCookie("usercookie", { path: "/" });
     req.rootUser.save();
 
-    res.status(201).json(req.rootUser.tokens);
+    res.status(201).json({status : 201});
   } catch (error) {
     res.status(401).json({ status: 401, error });
   }
