@@ -7,7 +7,7 @@ import Error from "./components/Error";
 
 function App() {
   return (
-    <div className="App">
+    <>
       <Header />
 
       <Routes>
@@ -16,7 +16,7 @@ function App() {
         <Route path="/dash" element={<Dashboard />} />
         <Route path="*" element={<Error />} />
       </Routes>
-    </div>
+    </>
   );
 }
 

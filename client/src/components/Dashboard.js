@@ -25,6 +25,7 @@ const Dashboard = () => {
     if(data.status === 401 || !data){
         history("*")
     }else{
+      console.log("user verify")
       setLogindata(data)
       history("/dash")
     }
