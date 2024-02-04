@@ -22,7 +22,7 @@ const Login = () => {
     });
   };
 
-  const loginUser = async(e) => {
+  const loginUser = async (e) => {
     e.preventDefault();
 
     const { email, password } = inpval;
@@ -38,8 +38,6 @@ const Login = () => {
     } else {
       // console.log("user login successfully");
 
-
-      
       const data = await fetch("/login", {
         method: "POST",
         headers: {
@@ -47,16 +45,16 @@ const Login = () => {
         },
         body: JSON.stringify({
           email,
-          password
+          password,
         }),
       });
 
       const res = await data.json();
-      console.log(res);
+      // console.log(res);
 
-      if(res.status === 201){
-        localStorage.setItem("usersdatatoken" , res.result.token)
-        setInpVal({...inpval , email:"" , password:""});
+      if (res.status === 201) {
+        localStorage.setItem("usersdatatoken", res.result.token);
+        setInpVal({ ...inpval, email: "", password: "" });
       }
     }
   };
