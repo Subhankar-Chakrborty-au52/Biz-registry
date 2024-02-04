@@ -12,7 +12,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 app.use(router);
-app.use(cookiParser());
+app.use(cookiParser())
 
 // Port and Server starting
 const PORT = process.env.PORT;
