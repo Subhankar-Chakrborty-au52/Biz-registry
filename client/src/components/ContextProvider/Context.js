@@ -1,17 +1,16 @@
-import React, { createContext, useState } from 'react'
+import React, { createContext, useState } from "react";
 
 export const LoginContext = createContext("");
 
-const Context = ({children}) => {
-
-    const  [ logindata , setLogindata] = useState("")
+const Context = ({ children }) => {
+  const [logindata, setLogindata] = useState("");
   return (
     <>
-    <LoginContext.Provider value={{logindata , setLogindata }}>
+      <LoginContext.Provider value={{ logindata, setLogindata }}>
         {children}
-    </LoginContext.Provider>
+      </LoginContext.Provider>
     </>
-  )
-}
+  );
+};
 
-export default Context
+export default Context;
