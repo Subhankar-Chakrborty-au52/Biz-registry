@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import "./mix.css";
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import FormControl from "@mui/material/FormControl";
+import FormLabel from "@mui/material/FormLabel";
 
 const Login = () => {
   const history = useNavigate();
@@ -56,7 +61,7 @@ const Login = () => {
 
       if (res.status === 201) {
         localStorage.setItem("usersdatatoken", res.result.token);
-        history("/dash")
+        history("/dash");
         setInpVal({ ...inpval, email: "", password: "" });
       }
     }
@@ -74,6 +79,27 @@ const Login = () => {
           </div>
 
           <form>
+            <FormControl>
+              <FormLabel id="demo-row-radio-buttons-group-label">
+                Role
+              </FormLabel>
+              <RadioGroup
+                row
+                aria-labelledby="demo-row-radio-buttons-group-label"
+                name="row-radio-buttons-group"
+              >
+                <FormControlLabel
+                  value="Admin"
+                  control={<Radio />}
+                  label="Admin"
+                />
+                <FormControlLabel
+                  value="User"
+                  control={<Radio />}
+                  label="User"
+                />
+              </RadioGroup>
+            </FormControl>
             <div className="form_input">
               <label htmlFor="email">Email</label>
               <input

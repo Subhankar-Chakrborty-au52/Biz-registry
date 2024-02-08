@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import "./mix.css";
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import FormControl from "@mui/material/FormControl";
+import FormLabel from "@mui/material/FormLabel";
 
 const Register = () => {
   const [passShow, setPassShow] = useState(false);
@@ -89,6 +94,27 @@ const Register = () => {
           </div>
 
           <form>
+            <FormControl>
+              <FormLabel id="demo-row-radio-buttons-group-label">
+                Role
+              </FormLabel>
+              <RadioGroup
+                row
+                aria-labelledby="demo-row-radio-buttons-group-label"
+                name="row-radio-buttons-group"
+              >
+                <FormControlLabel
+                  value="Admin"
+                  control={<Radio />}
+                  label="Admin"
+                />
+                <FormControlLabel
+                  value="User"
+                  control={<Radio />}
+                  label="User"
+                />
+              </RadioGroup>
+            </FormControl>
             <div className="form_input">
               <label htmlFor="fname">Name</label>
               <input
